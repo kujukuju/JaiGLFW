@@ -256,6 +256,8 @@ GLFW_OPENGL_COMPAT_PROFILE ::  0x00032002;
 GLFW_CURSOR ::                 0x00033001;
 GLFW_STICKY_KEYS ::            0x00033002;
 GLFW_STICKY_MOUSE_BUTTONS ::   0x00033003;
+GLFW_LOCK_KEY_MODS ::          0x00033004;
+GLFW_RAW_MOUSE_MOTION ::       0x00033005;
 GLFW_CURSOR_NORMAL ::          0x00034001;
 GLFW_CURSOR_HIDDEN ::          0x00034002;
 GLFW_CURSOR_DISABLED ::        0x00034003;
@@ -388,6 +390,7 @@ glfwWaitEventsTimeout :: (timeout: float64) #foreign glfw3;
 glfwPostEmptyEvent :: () #foreign glfw3;
 glfwGetInputMode :: (window: *GLFWwindow, mode: s32) -> s32 #foreign glfw3;
 glfwSetInputMode :: (window: *GLFWwindow, mode: s32, value: s32) #foreign glfw3;
+glfwRawMouseMotionSupported :: () -> s32 #foreign glfw3;
 glfwGetKeyName :: (key: s32, scancode: s32) -> *u8 #foreign glfw3;
 glfwGetKey :: (window: *GLFWwindow, key: s32) -> s32 #foreign glfw3;
 glfwGetMouseButton :: (window: *GLFWwindow, button: s32) -> s32 #foreign glfw3;
@@ -488,6 +491,6 @@ glfwGetProcAddress :: (procname: *u8) -> GLFWglproc #foreign glfw3;
 
 #scope_file
 
-#if OS == .WINDOWS     glfw3 :: #foreign_library "win/glfw3";
-else #if OS == .MACOS  glfw3 :: #foreign_library "mac/libglfw.3";
-else #if OS == .LINUX  glfw3 :: #foreign_library "linux/libglfw";
+#if OS == .WINDOWS     glfw3 :: #library "win/glfw3";
+else #if OS == .MACOS  glfw3 :: #library "mac/libglfw.3";
+else #if OS == .LINUX  glfw3 :: #library "linux/libglfw";
