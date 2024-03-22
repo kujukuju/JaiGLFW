@@ -4989,9 +4989,9 @@ GLFW_EXPOSE_NATIVE_WIN32 :: false;
 
 #if OS == .WINDOWS || OS == .WASM {
     glfw3 :: #library,link_always,no_dll "win/glfw3";
-    #system_library,link_always "user32";
-    #system_library,link_always "gdi32";
-    #system_library,link_always "shell32";
+    user32 :: #system_library,link_always "user32";
+    gdi32 :: #system_library,link_always "gdi32";
+    shell32 :: #system_library,link_always "shell32";
 } else #if OS == .MACOS {
     glfw3 :: #library,link_always,no_dll "mac/libglfw3";
     // I don't know what the equivalent link is for mac
